@@ -1,13 +1,13 @@
 
 # Taiyo
-
+A complete project for easy downloading, managing and watching media content from the internet.
 Project mashup for:
 
-- Manager (Sonarr)
-- Indexing (Jackett)
-- Torrenting (Transmission)
-- Viewing (Jellyfin)
-- With VPN support for transmission (Gluetun)
+- Managing ([Sonarr](https://sonarr.tv/))
+- Indexing ([Jackett](https://github.com/Jackett/Jackett))
+- Torrenting ([Transmission](https://transmissionbt.com/))
+- Viewing ([Jellyfin](https://jellyfin.org/))
+- With VPN support for transmission ([Gluetun](https://github.com/qdm12/gluetun))
 
   
 
@@ -46,10 +46,11 @@ Taiyo uses existing projects to accomplish functionality.
 - *OPTIONAL(Recommended):* **Gluetun for VPN**
 For VPN support, I utilize gluetun open-source project that supports many VPN service providers. The provided configuration is for [Mullvad](https://mullvad.net/), however you can choose the provider you want.
 **Gluetun** is used as a network container, as all traffic of the torrenting container is routed through it. It can be skipped, but it is not recommended.
-**Configuration:** You can configure Gluetun inside the ``docker-compose.yml`` file.
+**Configuration:** You can configure Gluetun inside the ``docker-compose.yml`` file.  
 - **Transmission for torrenting**
 **Transmission** is installed as a separate docker container. After configured, **it must be configured to work with sonarr** from the sonarr interface.
 **Configuration:** You can configure Gluetun inside the ``docker-compose.yml`` file.
+***NOTE: Make sure the transmission user and group are the same as the ones used for Sonarr, else there will be permission issues***
 
 **Running the Image**
 Run the command:
