@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun:pr-1742
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+#    select vpn protocol
+#      - OPENVPN_USER=
+#      - WIREGUARD_PRIVATE_KEY=
+#      - WIREGUARD_ADDRESSES=
+      - SERVER_CITIES= #lowercase, comma separated
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ= #optional, e.g. Europe/Athens
+      - TRANSMISSION_WEB_HOME= #optional
+      - USER= #optional
+      - PASS= #optional
+      - WHITELIST= #optional
+      - PEERPORT= #optional
+      - HOST_WHITELIST= #optional
+    volumes:
+      - /home/dietpi/transmission:/config
+      - /home/dietpi/transmission:/downloads
+      - /home/dietpi/transmission:/watch
+    restart: unless-stopped
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
