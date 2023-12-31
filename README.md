@@ -17,21 +17,8 @@ For linux, configured for debian-based systems.
 
 Tested for Raspberry PI 3, running [dietpi](https://dietpi.com/).
 
-  
 
-### Step 1: Installing Sonarr
-
-**For Dietpi users:** Can be installed with the dietpi-software utility.
-
-Else, install sonarr with the command:
-```
-curl -o- https://raw.githubusercontent.com/Sonarr/Sonarr/develop/distribution/debian/install.sh | bash
-```
-When asked to set a user and group for linux permissions, take note of them, as they will be used in a later step.
-
-Check that it works (may require a restart or a daemon reload) with ``http://localhost:8989`` (or replace localhost with server local ip address).
-
-### Step 2: Installing Jellyfin
+### Step 1: Installing Jellyfin
 **For Dietpi users:** Can be installed with the dietpi-software utility.
 
 Else, install jellyfin with the command:
@@ -41,7 +28,7 @@ curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
 
 Both sonarr and jellyfin can be managed with ``systemctl`` utility.
 
-### Step 3: Install Taiyo Docker Image
+### Step 2: Install Taiyo Docker Image
 Taiyo uses existing projects to accomplish functionality.  
 - *OPTIONAL(Recommended):* **Gluetun for VPN**
 For VPN support, I utilize gluetun open-source project that supports many VPN service providers. The provided configuration is for [Mullvad](https://mullvad.net/), however you can choose the provider you want.
@@ -62,7 +49,7 @@ in the directory of the docker-compose.yml file. To detatch from the terminal, y
 docker-compose up -d
 ```
 
-### Step 4: Install Jackett
+### Step 3: Install Jackett
 **For Dietpi users:** Can be installed with the dietpi-software utility.
 Else, install jacket with the command:
 ```
@@ -74,7 +61,7 @@ Verify that it is working by navigating to ``http://localhost:9117``, or replace
 - **Linking with Sonarr:** Follow the instructions in the Jackett interface to connect it with Sonarr.  
 - **Adding Indexers:** You need to add your selection of indexers through Jackett using the interface. After that, they will appear in the Sonarr indexers list (Settings > Indexers).
 
-### Step 5: Configure Sonarr
+### Step 4: Configure Sonarr
 Open the Sonarr interface from a browser (``http://localhost:8989``).   
 Go to Settings > Download Clients and create a new download client configuration. Select **transmission** and enter a name. After that, press **test** and then **save**.
 
