@@ -1,13 +1,13 @@
 
 # Taiyo
-
+A complete project for easy downloading, managing and watching media content from the internet.
 Project mashup for:
 
-- Manager (Sonarr)
-- Indexing (Jackett)
-- Torrenting (Transmission)
-- Viewing (Jellyfin)
-- With VPN support for transmission (Gluetun)
+- Managing ([Sonarr](https://sonarr.tv/))
+- Indexing ([Jackett](https://github.com/Jackett/Jackett))
+- Torrenting ([Transmission](https://transmissionbt.com/))
+- Viewing ([Jellyfin](https://jellyfin.org/))
+- With VPN support for transmission ([Gluetun](https://github.com/qdm12/gluetun))
 
   
 
