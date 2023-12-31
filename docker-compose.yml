@@ -8,7 +8,7 @@ services:
       - NET_ADMIN
     environment:
       - VPN_SERVICE_PROVIDER=mullvad
-      - VPN_TYPE=wireguard
+#      - VPN_TYPE=wireguard
 #    select vpn protocol
 #      - OPENVPN_USER=
 #      - WIREGUARD_PRIVATE_KEY=
@@ -34,9 +34,24 @@ services:
       - HOST_WHITELIST= #optional
     volumes:
       - /home/dietpi/transmission:/config
-      - /home/dietpi/transmission:/downloads
-      - /home/dietpi/transmission:/watch
+      - common_volume:/data
     restart: unless-stopped
     network_mode: "service:gluetun"
     depends_on:
       - gluetun
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ= Europe/Athens
+    volumes:
+      - /home/dietpi/sonarr:/config
+      - common_volume:/data
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+volumes:
+  common_volume:
